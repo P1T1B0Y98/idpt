@@ -55,6 +55,10 @@ const assignmentTypes = require('./assignments/types')
 const assignmentQueries = require('./assignments/queries')
 const assignmentMutations = require('./assignments/mutations')
 
+const assessmentTypes = require('./assessments/types')
+const assessmentQueries = require('./assessments/queries')
+const assessmentMutations = require('./assessments/mutations')
+
 const assignmentResponseTypes = require('./assignmentResponse/types')
 const assignmentResponseQueries = require('./assignmentResponse/queries')
 const assignmentResponseMutations = require('./assignmentResponse/mutations')
@@ -77,6 +81,7 @@ const types = [
   ...roadmapTypes,
   ...epicTypes,
   ...assignmentTypes,
+  ...assessmentTypes,
   ...taxonomyTypes,
   ...assignmentResponseTypes
 ].map(type => type.resolver)
@@ -94,6 +99,7 @@ const queries = [
   ...roadmapQueries,
   ...epicQueries,
   ...assignmentQueries,
+  ...assessmentQueries,
   ...taxonomyQueries,
   ...assignmentResponseQueries
 ].map(query => query.resolver)
@@ -111,6 +117,7 @@ const mutations = [
   ...roadmapMutations,
   ...epicMutations,
   ...assignmentMutations,
+  ...assessmentMutations,
   ...taxonomyMutations,
   ...assignmentResponseMutations
 ].map(mutation => mutation.resolver)

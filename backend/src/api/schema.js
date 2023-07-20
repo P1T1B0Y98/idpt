@@ -52,6 +52,10 @@ const epicTypes = require('./epic/types')
 const epicQueries = require('./epic/queries')
 const epicMutations = require('./epic/mutations')
 
+const assessmentTypes = require('./assessments/types')
+const assessmentQueries = require('./assessments/queries')
+const assessmentMutations = require('./assessments/mutations')
+
 const assignmentTypes = require('./assignments/types')
 const assignmentQueries = require('./assignments/queries')
 const assignmentMutations = require('./assignments/mutations')
@@ -78,6 +82,7 @@ const types = [
   ...roadmapTypes,
   ...epicTypes,
   ...assignmentTypes,
+  ...assessmentTypes,
   ...taxonomyTypes,
   ...assignmentResponseTypes
 ].map(type => type.schema)
@@ -95,12 +100,14 @@ const mutations = [
   ...roadmapMutations,
   ...epicMutations,
   ...assignmentMutations,
+  ...assessmentMutations,
   ...taxonomyMutations,
   ...assignmentResponseMutations
 ].map(mutation => mutation.schema)
 
 const queries = [
   ...assignmentQueries,
+  ...assessmentQueries,
   ...iamQueries,
   ...authQueries,
   ...auditLogQueries,
