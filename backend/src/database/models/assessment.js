@@ -8,10 +8,10 @@ const Schema = database.Schema;
 const AssessmentSchema = new Schema(
   {
     title: { type: String },
-    sub_title: { type: String },
     assessment_type: {
       type: String,
-      enum: ['stress', 'mental health', 'physical health'],
+      required: true,
+      enum: ['stress', 'mental_health', 'physical_health'],
       default: 'stress',
     },
     owner: [
@@ -39,6 +39,7 @@ const AssessmentSchema = new Schema(
           default: 'input',
         },
         placeholder: { type: String },
+        field: { type: String, required: true },
         question: { type: String, required: true },
         rules: [
           {
@@ -56,11 +57,21 @@ const AssessmentSchema = new Schema(
           {
             field: { type: String, required: true },
             value: { type: String, required: true },
-            label: { type: String, required: true },
+            label: { type: String, required: false },
           },
         ],
       },
     ],
+    frequency: {
+      type: String,
+      required: true,
+      enum: [
+        'null',
+        'daily',
+        'weekly',
+        'monthly'],
+      default: 'null',
+    },
     createdBy: { type: Schema.Types.ObjectId, ref: 'user' },
     updatedBy: { type: Schema.Types.ObjectId, ref: 'user' },
     importHash: { type: String },

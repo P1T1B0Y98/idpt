@@ -26,6 +26,32 @@ const no = {
   },
 
   entities: {
+    assessments: {
+      name: 'Assessments',
+      label: 'Assessments',
+      menu: 'Assessments',
+      list: {
+        menu: 'Assessments',
+        title: 'Assessments',
+      },
+      destroy: {
+        success: 'Sletting av Assessment vellykket',
+      },
+      destroyAll: {
+        success: 'Sletting av Assessment(s) vellykket',
+      },
+      fields: {
+        id: 'ID',
+        title: 'Title',
+        sub_title: 'Sub Title',
+      },
+      new: {
+        title: 'Ny Assessment',
+      },
+      edit: {
+        title: 'Rediger Assessment',
+      },
+    },
     assignments: {
       name: 'Assignments',
       label: 'Assignments',

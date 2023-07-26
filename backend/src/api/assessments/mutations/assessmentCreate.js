@@ -10,8 +10,6 @@ const resolver = {
   assessmentCreate: async (root, args, context) => {
     console.log(args.data, 'it should come here.')
 
-    
-
     return new AssessmentService(context).create(args.data)
   }
 }

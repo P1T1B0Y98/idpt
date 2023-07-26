@@ -26,6 +26,38 @@ const en = {
   },
 
   entities: {
+    assessments: {
+      name: 'Assessments',
+      label: 'Assessments',
+      menu: 'Assessments',
+      list: {
+        menu: 'Assessments',
+        title: 'Assessments',
+      },
+      create: {
+        success: 'Assessment created successfully',
+      },
+      update: {
+        success: 'Assessment updated successfully',
+      },
+      destroy: {
+        success: 'Assessment deleted successfully',
+      },
+      destroyAll: {
+        success: 'Assessment(s) deleted successfully',
+      },
+      fields: {
+        id: 'ID',
+        title: 'Title',
+        sub_title: 'Sub Title',
+      },
+      new: {
+        title: 'New Assessment',
+      },
+      edit: {
+        title: 'Edit Assessment',
+      },
+    },
     assignments: {
       name: 'Assignments',
       label: 'Assignments',

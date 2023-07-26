@@ -1,21 +1,22 @@
 const schema = `
   input AssessmentInput {
     title: String!
-    sub_title: String
-    assessment_type: AssessmentTypeEnum
+    assessment_type: AssessmentTypeEnum!
     assessmentSchema: [AssessmentSchemaInput]
+    frequency: FrequencyEnum!  
   }
 
   input AssessmentSchemaInput {
     type: QuestionTypeEnum
     placeholder: String
+    field: String!
     question: String!
     rules: [RulesInput]
     options: [OptionsInput]
     assessmentSchema: [RulesInput]
   }
 
-  input RulesInput{
+  input RulesInput {
     required: Boolean!
     message: String!
   }
@@ -23,7 +24,7 @@ const schema = `
   input OptionsInput {
     field: String!
     value: String!
-    label: String!
+    label: String
   }
 `;
 

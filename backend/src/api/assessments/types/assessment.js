@@ -2,18 +2,19 @@ const schema = `
  type Assessment {
    id: String!
    title: String!
-   sub_title: String
-   assessment_type: AssessmentTypeEnum
+   assessment_type: AssessmentTypeEnum!
    owner: [Task!]
    assessmentSchema: [AssessmentSchema]
    createdAt: DateTime
    createdBy: User
    updatedAt: DateTime
+   frequency: FrequencyEnum!
  }
 
  type AssessmentSchema {
    type: QuestionTypeEnum
    placeholder: String
+   field: String!
    question: String!
    rules: [RuleType]
    options: [Options]
@@ -23,13 +24,18 @@ const schema = `
  type Options{
    field: String!
    value: String!
-   label: String!
+   label: String
  }
 
  type Rules {
    required: Boolean
    message: String!
  }
+
+ type RecurringInfo {
+  recurring: Boolean
+  frequency: String
+}
 `;
 
 const resolver = {};

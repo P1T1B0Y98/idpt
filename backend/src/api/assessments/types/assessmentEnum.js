@@ -16,6 +16,13 @@ const schema = `
     mental_health
     physical_health
   }
+
+  enum FrequencyEnum {
+    none
+    daily
+    weekly
+    monthly
+  }
 `;
 
 const resolver = {};

@@ -16,6 +16,7 @@ import settings from 'modules/settings/settingsReducers'
 import auditLog from 'modules/auditLog/auditLogReducers'
 import document from 'modules/document/documentReducers'
 import taxonomy from 'modules/taxonomy/taxonomyReducers'
+import assessments from 'modules/assessments/assessmentsReducers' 
 import assignments from 'modules/assignments/assignmentsReducers'
 import assignmentResponse from 'modules/assignmentResponse/assignmentResponseReducers'
 
@@ -36,6 +37,7 @@ export default history =>
     video,
     record,
     document,
+    assessments,
     assignments,
     roadmap,
     taxonomy,

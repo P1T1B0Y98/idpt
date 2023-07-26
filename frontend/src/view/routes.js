@@ -319,6 +319,33 @@ const privateRoutes = [
     menu: true,
   },
   {
+    path: '/assessments',
+    loader: () =>
+      import('view/assessments/list/AssessmentsListPage'),
+    menu: true,
+    icon: 'solution',
+    label: i18n('entities.assessments.menu'),
+    permissionRequired: permissions.casedRead,
+    exact: true,
+  },
+  {
+    path: '/assessments/new',
+    loader: () =>
+      import('view/assessments/form/AssessmentFormPage'),
+    menu: false,
+    label: i18n('entities.assessments.menu'),
+    permissionRequired: permissions.recordRead,
+    exact: true,
+  },
+  {
+    path: '/assessments/:id/edit',
+    loader: () =>
+      import('view/assessments/form/AssessmentFormPage'),
+    menu: false,
+    permissionRequired: permissions.taskEdit,
+    exact: true,
+  },
+  {
     path: '/assignments',
     loader: () =>
       import('view/assignments/list/AssignmentsListPage'),
