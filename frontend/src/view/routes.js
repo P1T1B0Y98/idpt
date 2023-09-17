@@ -146,7 +146,7 @@ const privateRoutes = [
   {
     path: '/patient/responses',
     loader: () =>
-      import('view/assignmentResponse/list/AssignmentResponseListPage'),
+      import('view/Response/list/ResponseListPage'),
     permissionRequired: permissions.patientRead,
     exact: true,
     icon: 'usergroup-add',
@@ -319,28 +319,28 @@ const privateRoutes = [
     menu: true,
   },
   {
-    path: '/assessments',
+    path: '/questionnaires',
     loader: () =>
-      import('view/assessments/list/AssessmentsListPage'),
+      import('view/questionnaires/list/QuestionnairesListPage'),
     menu: true,
     icon: 'solution',
-    label: i18n('entities.assessments.menu'),
+    label: i18n('entities.questionnaires.menu'),
     permissionRequired: permissions.casedRead,
     exact: true,
   },
   {
-    path: '/assessments/new',
+    path: '/questionnaires/new',
     loader: () =>
-      import('view/assessments/form/AssessmentFormPage'),
+      import('view/questionnaires/form/QuestionnaireFormPage'),
     menu: false,
-    label: i18n('entities.assessments.menu'),
+    label: i18n('entities.questionnaires.menu'),
     permissionRequired: permissions.recordRead,
     exact: true,
   },
   {
-    path: '/assessments/:id/edit',
+    path: '/questionnaires/:id/edit',
     loader: () =>
-      import('view/assessments/form/AssessmentFormPage'),
+      import('view/questionnaires/form/QuestionnaireFormPage'),
     menu: false,
     permissionRequired: permissions.taskEdit,
     exact: true,

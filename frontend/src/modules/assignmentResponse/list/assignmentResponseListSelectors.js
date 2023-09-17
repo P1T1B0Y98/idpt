@@ -1,7 +1,6 @@
 import { createSelector } from 'reselect'
 
 const selectRaw = state => state.assignmentResponse.list
-
 const selectLoading = createSelector([ selectRaw ], raw => raw.loading)
 
 const selectExportLoading = createSelector(

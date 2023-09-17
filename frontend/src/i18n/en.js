@@ -26,25 +26,25 @@ const en = {
   },
 
   entities: {
-    assessments: {
-      name: 'Assessments',
-      label: 'Assessments',
-      menu: 'Assessments',
+    questionnaires: {
+      name: 'Questionnaires',
+      label: 'Questionnaires',
+      menu: 'Questionnaires',
       list: {
-        menu: 'Assessments',
-        title: 'Assessments',
+        menu: 'Questionnaires',
+        title: 'questionnaire',
       },
       create: {
-        success: 'Assessment created successfully',
+        success: 'questionnaire created successfully',
       },
       update: {
-        success: 'Assessment updated successfully',
+        success: 'questionnaire updated successfully',
       },
       destroy: {
-        success: 'Assessment deleted successfully',
+        success: 'questionnaire deleted successfully',
       },
       destroyAll: {
-        success: 'Assessment(s) deleted successfully',
+        success: 'questionnaire(s) deleted successfully',
       },
       fields: {
         id: 'ID',
@@ -52,10 +52,10 @@ const en = {
         sub_title: 'Sub Title',
       },
       new: {
-        title: 'New Assessment',
+        title: 'New questionnaire',
       },
       edit: {
-        title: 'Edit Assessment',
+        title: 'Edit questionnaire',
       },
     },
     assignments: {
@@ -96,13 +96,14 @@ const en = {
       menu: 'Responses',
       list: {
         menu: 'Response',
-        title: 'Response',
+        title: 'Responses',
+        sub_title: 'Assignments',
       },
       destroy: {
-        success: 'Assignment Response deleted successfully',
+        success: 'Response deleted successfully',
       },
       destroyAll: {
-        success: 'Assignment Response deleted successfully',
+        success: 'Response deleted successfully',
       },
       fields: {
         id: 'ID',
@@ -114,6 +115,33 @@ const en = {
       },
       edit: {
         title: 'Edit Assignment Response',
+      },
+    },
+    questionnaireResponse: {
+      name: 'questionnaire Response',
+      label: 'Responses',
+      menu: 'Responses',
+      list: {
+        menu: 'Response',
+        title: 'Response',
+        sub_title: 'Questionnaires',
+      },
+      destroy: {
+        success: 'questionnaire Response deleted successfully',
+      },
+      destroyAll: {
+        success: 'questionnaire Response deleted successfully',
+      },
+      fields: {
+        id: 'ID',
+        title: 'Title',
+        createdAt: 'Created at',
+      },
+      new: {
+        title: 'New questionnaire Response ',
+      },
+      edit: {
+        title: 'Edit questionnaire Response',
       },
     },
     patient: {

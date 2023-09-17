@@ -26,19 +26,19 @@ const no = {
   },
 
   entities: {
-    assessments: {
-      name: 'Assessments',
-      label: 'Assessments',
-      menu: 'Assessments',
+    questionnaires: {
+      name: 'Questionnaires',
+      label: 'Questionnaires',
+      menu: 'Questionnaires',
       list: {
-        menu: 'Assessments',
-        title: 'Assessments',
+        menu: 'Questionnaires',
+        title: 'Questionnaires',
       },
       destroy: {
-        success: 'Sletting av Assessment vellykket',
+        success: 'Sletting av Questionnaire vellykket',
       },
       destroyAll: {
-        success: 'Sletting av Assessment(s) vellykket',
+        success: 'Sletting av Questionnaire(s) vellykket',
       },
       fields: {
         id: 'ID',
@@ -46,10 +46,10 @@ const no = {
         sub_title: 'Sub Title',
       },
       new: {
-        title: 'Ny Assessment',
+        title: 'Ny Questionnaire',
       },
       edit: {
-        title: 'Rediger Assessment',
+        title: 'Rediger Questionnaire',
       },
     },
     assignments: {

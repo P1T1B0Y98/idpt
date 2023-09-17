@@ -27,6 +27,7 @@ var allowedOrigins = [
   'https://idpt.herokuapp.com/',
   'https://idpt.herokuapp.com/*',
   '//*.herokuapp.com:*/*',
+  'http://192.168.1.109:8080'
 ];
 
 // Enables CORS

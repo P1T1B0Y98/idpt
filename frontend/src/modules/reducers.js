@@ -16,9 +16,10 @@ import settings from 'modules/settings/settingsReducers'
 import auditLog from 'modules/auditLog/auditLogReducers'
 import document from 'modules/document/documentReducers'
 import taxonomy from 'modules/taxonomy/taxonomyReducers'
-import assessments from 'modules/assessments/assessmentsReducers' 
+import questionnaires from 'modules/questionnaires/questionnairesReducers'
 import assignments from 'modules/assignments/assignmentsReducers'
 import assignmentResponse from 'modules/assignmentResponse/assignmentResponseReducers'
+import questionnaireResponse from 'modules/questionnaireResponse/questionnaireResponseReducers'
 
 export default history =>
   combineReducers({
@@ -37,9 +38,10 @@ export default history =>
     video,
     record,
     document,
-    assessments,
+    questionnaires,
     assignments,
     roadmap,
     taxonomy,
-    assignmentResponse
+    assignmentResponse,
+    questionnaireResponse
   })

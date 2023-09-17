@@ -55,13 +55,17 @@ const assignmentTypes = require('./assignments/types')
 const assignmentQueries = require('./assignments/queries')
 const assignmentMutations = require('./assignments/mutations')
 
-const assessmentTypes = require('./assessments/types')
-const assessmentQueries = require('./assessments/queries')
-const assessmentMutations = require('./assessments/mutations')
+const questionnaireTypes = require('./questionnaires/types')
+const questionnaireQueries = require('./questionnaires/queries')
+const questionnaireMutations = require('./questionnaires/mutations')
 
 const assignmentResponseTypes = require('./assignmentResponse/types')
 const assignmentResponseQueries = require('./assignmentResponse/queries')
 const assignmentResponseMutations = require('./assignmentResponse/mutations')
+
+const questionnaireResponseTypes = require('./questionnaireResponse/types')
+const questionnaireResponseQueries = require('./questionnaireResponse/queries')
+const questionnaireResponseMutations = require('./questionnaireResponse/mutations')
 
 const taxonomyTypes = require('./taxonomy/types')
 const taxonomyQueries = require('./taxonomy/queries')
@@ -81,9 +85,10 @@ const types = [
   ...roadmapTypes,
   ...epicTypes,
   ...assignmentTypes,
-  ...assessmentTypes,
+  ...questionnaireTypes,
   ...taxonomyTypes,
-  ...assignmentResponseTypes
+  ...assignmentResponseTypes,
+  ...questionnaireResponseTypes
 ].map(type => type.resolver)
 
 const queries = [
@@ -99,9 +104,10 @@ const queries = [
   ...roadmapQueries,
   ...epicQueries,
   ...assignmentQueries,
-  ...assessmentQueries,
+  ...questionnaireQueries,
   ...taxonomyQueries,
-  ...assignmentResponseQueries
+  ...assignmentResponseQueries,
+  ...questionnaireResponseQueries
 ].map(query => query.resolver)
 
 const mutations = [
@@ -117,9 +123,10 @@ const mutations = [
   ...roadmapMutations,
   ...epicMutations,
   ...assignmentMutations,
-  ...assessmentMutations,
+  ...questionnaireMutations,
   ...taxonomyMutations,
-  ...assignmentResponseMutations
+  ...assignmentResponseMutations,
+  ...questionnaireResponseMutations
 ].map(mutation => mutation.resolver)
 
 module.exports = mergeResolvers(types, queries, mutations)

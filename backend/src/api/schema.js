@@ -52,9 +52,9 @@ const epicTypes = require('./epic/types')
 const epicQueries = require('./epic/queries')
 const epicMutations = require('./epic/mutations')
 
-const assessmentTypes = require('./assessments/types')
-const assessmentQueries = require('./assessments/queries')
-const assessmentMutations = require('./assessments/mutations')
+const questionnaireTypes = require('./questionnaires/types')
+const questionnaireQueries = require('./questionnaires/queries')
+const questionnaireMutations = require('./questionnaires/mutations')
 
 const assignmentTypes = require('./assignments/types')
 const assignmentQueries = require('./assignments/queries')
@@ -67,6 +67,10 @@ const taxonomyMutations = require('./taxonomy/mutations')
 const assignmentResponseTypes = require('./assignmentResponse/types')
 const assignmentResponseQueries = require('./assignmentResponse/queries')
 const assignmentResponseMutations = require('./assignmentResponse/mutations')
+
+const questionnaireResponseTypes = require('./questionnaireResponse/types')
+const questionnaireResponseQueries = require('./questionnaireResponse/queries')
+const questionnaireResponseMutations = require('./questionnaireResponse/mutations')
 
 const types = [
   ...sharedTypes,
@@ -82,9 +86,10 @@ const types = [
   ...roadmapTypes,
   ...epicTypes,
   ...assignmentTypes,
-  ...assessmentTypes,
+  ...questionnaireTypes,
   ...taxonomyTypes,
-  ...assignmentResponseTypes
+  ...assignmentResponseTypes,
+  ...questionnaireResponseTypes
 ].map(type => type.schema)
 
 const mutations = [
@@ -100,14 +105,15 @@ const mutations = [
   ...roadmapMutations,
   ...epicMutations,
   ...assignmentMutations,
-  ...assessmentMutations,
+  ...questionnaireMutations,
   ...taxonomyMutations,
-  ...assignmentResponseMutations
+  ...assignmentResponseMutations,
+  ...questionnaireResponseMutations
 ].map(mutation => mutation.schema)
 
 const queries = [
   ...assignmentQueries,
-  ...assessmentQueries,
+  ...questionnaireQueries,
   ...iamQueries,
   ...authQueries,
   ...auditLogQueries,
@@ -120,7 +126,8 @@ const queries = [
   ...roadmapQueries,
   ...epicQueries,
   ...taxonomyQueries,
-  ...assignmentResponseQueries
+  ...assignmentResponseQueries,
+  ...questionnaireResponseQueries
 ].map(query => query.schema)
 
 const query = `

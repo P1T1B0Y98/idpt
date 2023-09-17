@@ -146,6 +146,7 @@ class Permissions {
           roles.owner,
           roles.editor,
           roles.viewer,
+          roles.patient,
           roles.entityEditor,
           roles.casedEditor,
           roles.casedViewer

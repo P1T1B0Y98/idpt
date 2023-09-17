@@ -1,5 +1,4 @@
 import actions from 'modules/assignmentResponse/list/assignmentResponseListActions'
-
 const INITIAL_PAGE_SIZE = 10
 
 const initialData = {

@@ -294,6 +294,7 @@ const FormBuilder = (props) => {
               <Radio value="psycometric_assessment">
                 Psycometric assessment
               </Radio>
+              <Radio value="questionnaire"> Questionnaire</Radio>
             </Radio.Group>,
           )}
         </Form.Item>
