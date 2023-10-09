@@ -1,41 +1,30 @@
 const schema = `
  type Questionnaire {
    id: String!
+   resourceType: String!
+   status: String!
    title: String!
-   questionnaire_type: QuestionnaireTypeEnum!
-   owner: [Task!]
-   questionnaireSchema: [QuestionnaireSchema]
-   createdAt: DateTime
-   createdBy: User
-   updatedAt: DateTime
-   frequency: FrequencyEnum!
+   type: QuestionnaireTypeEnum!
+   item: [QuestionnaireSchema]
+   subjectType: String!
+   publisher: User
+   date: DateTime
+   repeats: FrequencyEnum!
  }
 
  type QuestionnaireSchema {
+   linkId: String!
    type: QuestionTypeEnum
-   placeholder: String
-   field: String!
-   question: String!
-   rules: [RuleType]
-   options: [Options]
-   questionnaireSchema: [Rules]
+   text: String!
+   required: Boolean!
+   answerOption: [Options]
  }
 
  type Options{
-   field: String!
    value: String!
-   label: String
+   label: String!
  }
 
- type Rules {
-   required: Boolean
-   message: String!
- }
-
- type RecurringInfo {
-  recurring: Boolean
-  frequency: String
-}
 `;
 
 const resolver = {};

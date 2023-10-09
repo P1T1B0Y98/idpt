@@ -52,15 +52,14 @@ const SortableSchema = SortableContainer(
                   let found = false;
                   const updatedSchema = items.filter(
                     (i, itemIndex) => {
-                      if (i.field === deletedItem.field) {
+                      if (i.linkId === deletedItem.linkId) {
                         found = true;
                         return false;
                       }
                       if (found) {
                         // eslint-disable-next-line no-param-reassign
-                        i.field = camelCase(
-                          `Question ${itemIndex}`,
-                        );
+                        i.linkId = 
+                          `${itemIndex}`;
                       }
                       return true;
                     },
@@ -80,10 +79,9 @@ const SortableSchema = SortableContainer(
 
 const emptyField = [
   {
+    linkId: `1`,
     type: 'input',
-    placeholder: '',
-    question: ``,
-    field: camelCase(`Question1`),
+    text: ``,
     rules: [
       { required: false, message: 'Field is required' },
     ],
@@ -101,9 +99,9 @@ const checkFrequency = (value) => {
 const checkLabels = (items) => {
   const notValid = items.filter(
     (item) =>
-      item.question === '' ||
-      item.question === undefined ||
-      item.question === null,
+      item.text === '' ||
+      item.text === undefined ||
+      item.text === null,
   );
 
   return notValid.length === 0;
@@ -118,7 +116,7 @@ const checkOptions = (items) => {
       currQuestion.type === 'select' ||
       currQuestion.type === 'smartwatch_data'
     ) {
-      const currOptions = currQuestion.options;
+      const currOptions = currQuestion.answerOption;
       if (currOptions.length <= 0) {
         return false;
       }
@@ -153,16 +151,18 @@ const SchemaList = React.forwardRef(
               onSortEnd={({ oldIndex, newIndex }) => {
                 // Re-assigned avoid mutation.
                 let updatedSchema = value;
+                console.log(value)
                 updatedSchema = arrayMove(
                   updatedSchema,
                   oldIndex,
                   newIndex,
                 );
                 updatedSchema.forEach((e, index) => {
-                  e.field = camelCase(
-                    `Question ${index + 1}`,
+                  e.linkId = camelCase(
+                    `${index + 1}`,
                   );
                 });
+                console.log("UpdatedSchema", updatedSchema)
                 handleChange(updatedSchema);
               }}
             />
@@ -179,9 +179,9 @@ const SchemaList = React.forwardRef(
                   ...value,
                   {
                     type: 'input',
-                    question: ``,
-                    field: camelCase(
-                      `Question ${value.length + 1}`,
+                    text: ``,
+                    linkId: camelCase(
+                      `${value.length + 1}`,
                     ),
                     rules: [
                       {
@@ -222,6 +222,11 @@ const FormBuilder = (props) => {
     e.preventDefault();
     validateFields((err, { id, ...formData }) => {
       if (!err) {
+        formData.item = formData.item.map((item) => ({
+          ...item,
+          required: item.required || false,
+        }));
+        
         props.onSubmit(id, formData);
       } else if (onError) {
         setErrors(err.schema.errors);
@@ -237,6 +242,12 @@ const FormBuilder = (props) => {
   if (!record && isEditing) {
     return <Spinner />;
   }
+
+
+  if (record) {
+    record.resourceType = 'questionnaire';
+  }
+
 
   if (isEditing && record.id)
     getFieldDecorator('id', { initialValue: record.id });
@@ -282,8 +293,8 @@ const FormBuilder = (props) => {
           })(<Input placeholder="Add form title" />)}
         </Form.Item>
         <Form.Item required label="Questionnaire Type">
-          {getFieldDecorator('questionnaire_type', {
-            initialValue: record ? record.questionnaire_type : '',
+          {getFieldDecorator('type', {
+            initialValue: record ? record.type : '',
             rules: [
               {
                 validator: (rule, value, callback) => {
@@ -303,8 +314,8 @@ const FormBuilder = (props) => {
           )}
         </Form.Item>
         <Form.Item required label="Recurring questionnaire">
-          {getFieldDecorator('frequency', {
-            initialValue: record ? record.frequency : '',
+          {getFieldDecorator('repeats', {
+            initialValue: record ? record.repeats : '',
             rules: [
               {
                 validator: (rule, value, callback) => {
@@ -326,10 +337,10 @@ const FormBuilder = (props) => {
         </Form.Item>
         <Row>
           <Form.Item validateStatus={null} help={null}>
-            {getFieldDecorator('questionnaireSchema', {
+            {getFieldDecorator('item', {
               initialValue:
-                record && !isEmpty(record.questionnaireSchema)
-                  ? record.questionnaireSchema
+                record && !isEmpty(record.item)
+                  ? record.item
                   : emptyField,
               rules: [
                 {

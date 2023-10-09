@@ -16,6 +16,7 @@ const App = (props) => {
         <FormBuilder
           formStructure={questionnaireSchema}
           onSave={(schema) => {
+            console.log(schema, "Schema")
             setQuestionnaireSchema(schema);
           }}
           onError={(error) => console.log(error)}

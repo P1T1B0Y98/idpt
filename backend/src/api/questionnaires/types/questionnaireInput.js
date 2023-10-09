@@ -1,19 +1,18 @@
 const schema = `
   input QuestionnaireInput {
     title: String!
-    questionnaire_type: QuestionnaireTypeEnum!
-    questionnaireSchema: [QuestionnaireSchemaInput]
-    frequency: FrequencyEnum!  
+    type: QuestionnaireTypeEnum!
+    item: [QuestionnaireSchemaInput]
+    repeats: FrequencyEnum!  
   }
 
   input QuestionnaireSchemaInput {
+    linkId: String!
     type: QuestionTypeEnum
-    placeholder: String
-    field: String!
-    question: String!
+    text: String!
+    required: Boolean!
     rules: [RulesInput]
-    options: [OptionsInput]
-    questionnaireSchema: [RulesInput]
+    answerOption: [OptionsInput]
   }
 
   input RulesInput {
@@ -22,9 +21,8 @@ const schema = `
   }
 
   input OptionsInput {
-    field: String!
     value: String!
-    label: String
+    label: String!
   }
 `;
 

@@ -1,3 +1,5 @@
 module.exports = [
-  require('./questionnaireResponseCreate')
+  require('./questionnaireResponseCreate'),
+  require('./questionnaireResponseDelete'),
+  require('./questionnaireResponseDeleteAll'),
 ]

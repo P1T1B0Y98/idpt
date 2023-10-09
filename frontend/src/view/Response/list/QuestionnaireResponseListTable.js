@@ -38,9 +38,10 @@ class QuestionnaireResponseListTable extends Component {
     fields.id.forTable(),
     {
       title: 'Questionnaire',
-      dataIndex: 'questionnaireId',
+      dataIndex: 'questionnaire',
       render: (_, record) => {
-        const questionnaireID = _get(record, 'questionnaireId[0]')
+        const questionnaireID = _get(record, 'questionnaire[0]')
+        console.log(questionnaireID)
         return questionnaireID ? (<div><Link to={`/questionnaires/${questionnaireID.id}/edit`}>{questionnaireID.title}</Link></div>) : null;
        }
     },

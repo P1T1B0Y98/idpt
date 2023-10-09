@@ -92,26 +92,18 @@ export default class QuestionnairesService {
         query QUESTIONNAIRES_FIND($id: String!) {
           questionnairesFind(id: $id) {
             id
+            resourceType
             title
-            questionnaire_type
-            frequency
-            questionnaireSchema {
+            type
+            status
+            repeats
+            item {
+              linkId
               type
-              field
-              question
-              options {
-                field
+              text
+              answerOption {
                 value
                 label
-              }
-              placeholder
-              rules {
-                required
-                message
-              }
-              questionnaireSchema {
-                required
-                message
               }
             }
             createdAt
@@ -144,17 +136,15 @@ export default class QuestionnairesService {
             rows {
               id
               title
-              questionnaireSchema {
+              item {
                 type
-                field
-                question
+                text
               }
-              createdBy {
+              publisher {
                 id
                 fullName
               }
-              createdAt
-              updatedAt
+              date
             }
           }
         }

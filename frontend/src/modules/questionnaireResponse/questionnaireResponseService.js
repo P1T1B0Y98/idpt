@@ -37,6 +37,38 @@ export default class QuestionnaireReponseService {
     return response
   }
 
+  static async deleteQuestionnaireResponse (id) {
+    const response = await graphqlClient.mutate({
+      mutation: gql`
+      mutation QUESTIONNAIRE_RESPONSE_DELETE(
+        $id: String!
+      ) {
+        questionnaireResponseDelete(id: $id) {
+        }
+      }
+      `,
+      variables: { id }
+    })
+
+    return response.data.questionnaireReponseDelete
+  }
+
+  static async deleteALLQuestionnaireResponseUser (userId) {
+    const response = await graphqlClient.mutate({
+      mutation: gql`
+      mutation QUESTIONNAIRE_RESPONSE_DELETE_ALL(
+        $userId: String!
+      ) {
+        questionnaireResponseDeleteAll(userId: $userId) {
+        }
+      }
+      `,
+      variables: { userId }
+    })
+
+    return response.data.questionnaireReponseDeleteAll
+  }
+
   static async find (id) {
     const response = await graphqlClient.query({
       query: gql`
@@ -45,7 +77,7 @@ export default class QuestionnaireReponseService {
             id
             title
             sub_title
-            questionnaire_type
+            type
             formSchema {
               type
               label
@@ -91,7 +123,7 @@ export default class QuestionnaireReponseService {
             rows {
               id
               item
-              questionnaireId {
+              questionnaire {
                 id
                 title
               }

@@ -1,7 +1,7 @@
 const schema = `
  type QuestionnaireResponse {
    id: String!
-   questionnaireId: [Questionnaire!]
+   questionnaire: [Questionnaire!]
    item: JSON
    createdAt: DateTime
    subject: User

@@ -87,7 +87,53 @@ const QuestionnaireResponseRepository = require(
         throw error
       }
     }
-  
+
+    /**
+     * Delete questionnaire by Id
+     * 
+     * @param {*} id
+     */
+    async delete (id) {
+      const session = await MongooseRepository.createSession()
+
+      try {
+        await this.repository.destroy(id, {
+          session,
+          currentUser: this.currentUser
+        })
+
+        await MongooseRepository.commitTransaction(session)
+      } catch(error) {
+        await MongooseRepository.abortTransaction(session)
+        throw error
+      }
+    }
+
+    /**
+ * Delete questionnaire by userId
+ * 
+ * @param {*} userId
+ */
+async deleteByUserId(userId) {
+  const session = await MongooseRepository.createSession();
+
+  try {
+    // Fetch the IDs of questionnaire responses associated with the user.
+    const responseIds = await this.findResponseIdsByUserId(userId);
+
+    // Call destroyAll with the fetched IDs to delete the responses.
+    await this.destroyAll(responseIds, {
+      session,
+      currentUser: this.currentUser,
+    });
+
+    await MongooseRepository.commitTransaction(session);
+  } catch (error) {
+    await MongooseRepository.abortTransaction(session);
+    throw error;
+  }
+}
+
     /**
      * Finds the Questionnaire by Id.
      *
@@ -142,6 +188,24 @@ const QuestionnaireResponseRepository = require(
       return this.create(dataToCreate)
     }
   
+      /**
+     * Finds Questionnaire Responses by User ID without encryption.
+     *
+     * @param {string} userId - The ID of the user for whom to find Questionnaire responses.
+     * @param {object} options - Additional options for the query.
+     * @returns {Promise<Array>} - An array of Questionnaire responses for the specified user without encryption.
+     */
+    async findResponseIdsByUserId(userId, options = {}) {
+      const questionnaireResponses = await this.repository.findAndCountAll({
+        filter: { userId: userId },
+        ...options
+      });
+
+      // Extract and return the IDs of the questionnaire responses.
+      return questionnaireResponses.rows.map(response => response._id);
+    }
+
+
         /**
      * Finds Questionnaire Responses by User ID.
      *

@@ -144,7 +144,7 @@ const privateRoutes = [
     menu: true,
   },
   {
-    path: '/patient/responses',
+    path: '/responses',
     loader: () =>
       import('view/Response/list/ResponseListPage'),
     permissionRequired: permissions.patientRead,

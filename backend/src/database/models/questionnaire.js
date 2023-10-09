@@ -7,21 +7,31 @@ const Schema = database.Schema;
  */
 const QuestionnaireSchema = new Schema(
   {
+    resourceType: { 
+      type: String,
+      default: 'questionnaire' },
+    status: { 
+      type: String,
+      default: 'active'},
     title: { type: String },
-    questionnaire_type: {
+    type: {
       type: String,
       required: true,
       enum: ['stress', 'sleep', 'physical_health'],
       default: 'stress',
     },
-    owner: [
+    subjectType: {
+      type: String,
+      default: 'Patients'
+    },
+    publisher: {
+        type: Schema.Types.ObjectId, 
+        ref: 'user' 
+    },
+  
+    item: [
       {
-        type: Schema.Types.ObjectId,
-        ref: 'task',
-      },
-    ],
-    questionnaireSchema: [
-      {
+        linkId: { type: String },
         type: {
           type: String,
           required: true,
@@ -38,31 +48,17 @@ const QuestionnaireSchema = new Schema(
           ],
           default: 'input',
         },
-        placeholder: { type: String },
-        field: { type: String, required: true },
-        question: { type: String, required: true },
-        rules: [
+        text: { type: String, required: true },
+        required: { type: Boolean },
+        answerOption: [
           {
-            required: { type: Boolean },
-            message: { type: String, required: true },
-          },
-        ],
-        QuestionnaireSchema: [
-          {
-            required: { type: Boolean },
-            message: { type: String, required: true },
-          },
-        ],
-        options: [
-          {
-            field: { type: String, required: true },
             value: { type: String, required: true },
-            label: { type: String, required: false },
+            label: { type: String, required: true },
           },
         ],
       },
     ],
-    frequency: {
+    repeats: {
       type: String,
       required: true,
       enum: [
@@ -72,11 +68,10 @@ const QuestionnaireSchema = new Schema(
         'monthly'],
       default: 'null',
     },
-    createdBy: { type: Schema.Types.ObjectId, ref: 'user' },
-    updatedBy: { type: Schema.Types.ObjectId, ref: 'user' },
     importHash: { type: String },
   },
-  { timestamps: true },
+  { timestamps: { updatedAt: 'date' },
+},
 );
 
 QuestionnaireSchema.virtual('id').get(function() {

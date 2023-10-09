@@ -27,8 +27,8 @@ class QuestionnairesListTable extends Component {
         record && record.createdBy 
         ? (
           <div>
-            <Link to={`/iam/${record.createdBy.id}`}>
-              {typeof record.createdBy.fullName !== 'undefined' ? record.createdBy.fullName : '-'}
+            <Link to={`/iam/${record.publisher.id}`}>
+              {typeof record.publisher.fullName !== 'undefined' ? record.publisher.fullName : '-'}
             </Link>
           </div>
         )

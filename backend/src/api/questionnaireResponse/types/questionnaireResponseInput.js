@@ -1,7 +1,7 @@
 const schema = `
   input questionnaireResponseInput {
     resourceType: String
-    questionnaireId: String
+    questionnaire: String
     status: String
     subject: String
     authored: String

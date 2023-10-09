@@ -11,7 +11,7 @@ import { filter, uniqBy } from 'lodash';
 import RenderSmartwatchDataOptions from './RenderSmartwatchDataOptions';
 
 const RenderOptions = ({
-  value: { type, options = [] },
+  value: { type, answerOption = [] },
   onChange,
 }) => {
   const [clickedIndex, setClickedIndex] = useState(-1);
@@ -26,14 +26,14 @@ const RenderOptions = ({
       style={{ marginTop: 10 }}
       onClick={() => {
         const newOptions = [
-          ...options,
+          ...answerOption,
           {
-            field: `Option ${options.length + 1}`,
             value: ``,
-            label: ``,
+            label: `Option ${answerOption.length + 1}`,
           },
         ];
         setClickedIndex(-1);
+        console.log(newOptions)
         onChange(newOptions);
       }}
     >
@@ -43,29 +43,29 @@ const RenderOptions = ({
 
   const onOptionsChange = (newOptions) => {
     newOptions.forEach((e, index) => {
-      e.field = `Option ${index + 1}`;
+      e.label = `Option ${index + 1}`;
     });
     onChange(newOptions);
   };
 
   const handleSmartwatchDataChange = (smartwatchData) => {
-    const newOptions = Object.entries(smartwatchData).map(([field, value]) => {
+    const newOptions = Object.entries(smartwatchData).map(([label, value]) => {
       // If value is an object, flatten it
       if (typeof value === 'object' && value !== null) {
         return value;
       }
       return {
-        field: field,
+        label: label,
         value: value,
       };
     });
   
     // copy existing options
-    let mergedOptions = [...options];
+    let mergedOptions = [...answerOption];
   
     newOptions.forEach(newOption => {
       // find the index of the newOption in mergedOptions
-      const index = mergedOptions.findIndex(option => option.field === newOption.field);
+      const index = mergedOptions.findIndex(option => option.label === newOption.label);
       
       if (index !== -1) { 
         // if newOption exists, update its value
@@ -87,8 +87,8 @@ const RenderOptions = ({
       size="small"
       style={{ marginLeft: 10 }}
       onClick={() => {
-        const newOptions = filter(options, (o) => {
-          return o.field !== removed.field;
+        const newOptions = filter(answerOption, (o) => {
+          return o.label !== removed.label;
         });
         onOptionsChange(newOptions);
       }}
@@ -96,12 +96,12 @@ const RenderOptions = ({
   );
 
   if (type === 'smartwatch_data') {
-    return <RenderSmartwatchDataOptions value={options} onChange={handleSmartwatchDataChange} />
+    return <RenderSmartwatchDataOptions value={answerOption} onChange={handleSmartwatchDataChange} />
   }
 
   return (
     <div>
-      {options.map((option, index) => {
+      {answerOption.map((option, index) => {
         return (
           <div style={{ marginTop: '5px' }} key={index}>
             <Row
@@ -137,7 +137,7 @@ const RenderOptions = ({
                       option.value
                     ) : (
                       <span style={{ color: '#ccc' }}>
-                        {`Click to edit ${option.field}`}
+                        {`Click to edit ${option.label}`}
                       </span>
                     )}
                   </Button>
@@ -147,24 +147,24 @@ const RenderOptions = ({
                     value={inputValue}
                     autoFocus
                     placeholder={
-                      options[clickedIndex].field
+                      answerOption[clickedIndex].label
                     }
                     style={{
                       width: 300,
                     }}
                     onBlur={() => {
-                      let newOptions = options;
+                      let newOptions = answerOption;
                       newOptions[index].value = inputValue;
                       newOptions[index].label =
                         inputValue ||
-                        newOptions[index].field;
+                        newOptions[index].label;
                       setClickedIndex(-1);
                       setInputValue('');
                       newOptions = uniqBy(
                         newOptions,
                         (checkOption) => {
                           if (checkOption.value === '') {
-                            return checkOption.field;
+                            return checkOption.label;
                           }
                           return checkOption.value;
                         },

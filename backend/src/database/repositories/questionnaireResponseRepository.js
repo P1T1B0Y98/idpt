@@ -171,7 +171,7 @@ class questionnaireResponseRepository {
       .skip(skip)
       .limit(limitEscaped)
       .sort(sort)
-      .populate('questionnaireId')
+      .populate('questionnaire')
       .populate('subject')
     const count = await questionnaireResponse.countDocuments(criteria)
 

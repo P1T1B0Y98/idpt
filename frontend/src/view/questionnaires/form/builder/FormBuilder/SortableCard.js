@@ -7,11 +7,7 @@ import {
   faTextWidth,
   faAlignLeft,
   faCheckSquare,
-  faChevronCircleDown,
   faDotCircle,
-  faCheck,
-  faCalendarAlt,
-  faClock,
   faUserClock
 } from '@fortawesome/free-solid-svg-icons'
 import styled from 'styled-components'
@@ -46,21 +42,21 @@ const SortableCard = SortableElement((
   { value: { index, items, ...value }, onDelete, onChange }
 ) => {
     // Bubble up changes to parent.
-  const handleChange = (field = '', change) => {
+  const handleChange = (linkId = '', change) => {
       // Updated questionnaireSchema with changes.
     const allFields = items
       // Update specific property.
-    if (field) {
-      allFields[index] = { ...value, [field]: change }
+    if (linkId) {
+      allFields[index] = { ...value, [linkId]: change }
     } else {
         // replace property
-      allFields[index] = { ...change, field: value.field }
+      allFields[index] = { ...change, linkId: value.linkId }
     }
     if (onChange) onChange(allFields)
   }
 
   const handleOptionChange = change => {
-    handleChange('options', change)
+    handleChange('answerOption', change)
   }
 
   const handleSmartwatchDataChange = change => {
@@ -99,6 +95,7 @@ const SortableCard = SortableElement((
                         updatedRules[ruleIndex].required = checked
                         updatedRules[ruleIndex].message = 'Field is required'
                         handleChange('questionnaireSchema', updatedRules)
+                        handleChange('required', checked)
                       }
               }
                   }}
@@ -112,16 +109,16 @@ const SortableCard = SortableElement((
             <Form.Item required label='Question'>
               {value && value.type === 'textarea' ? <Input.TextArea
                 placeholder='Add Question Here'
-                value={value.question || ''}
+                value={value.text || ''}
                 autosize={{ minRows: 2, maxRows: 6 }}
                 onChange={e => {
-                  handleChange('question', e.target.value)
+                  handleChange('text', e.target.value)
                 }}
                     /> : <Input
-                      value={value.question || ''}
+                      value={value.text || ''}
                       placeholder='Add Question Here'
                       onChange={e => {
-                        handleChange('question', e.target.value)
+                        handleChange('text', e.target.value)
                       }}
                     />}
             </Form.Item>
@@ -139,8 +136,7 @@ const SortableCard = SortableElement((
                   onSelect={selected => {
                         // On change, reset.
                     const newField = {
-                        placeholder: 'Add Question Here',
-                        question: value.question,
+                        text: value.text,
                         type: selected,
                         rules: [
                             { required: false, message: 'Field is required' }
@@ -152,7 +148,7 @@ const SortableCard = SortableElement((
                             selected === 'select' ||
                             selected === 'smartwatch_data'
                         ) {
-                        newField.options = []
+                        newField.answerOption = []
                       }
 
                      handleChange('', newField)
@@ -173,22 +169,6 @@ const SortableCard = SortableElement((
                   <Select.Option key='checkbox' value='checkbox'>
                     <FontAwesomeIcon icon={faCheckSquare} />
                     <span style={{ marginLeft: 10 }}>Checkboxes</span>
-                  </Select.Option>
-                  <Select.Option key='select' value='select'>
-                    <FontAwesomeIcon icon={faChevronCircleDown} />
-                    <span style={{ marginLeft: 10 }}>Dropdown</span>
-                  </Select.Option>
-                  <Select.Option key='date' value='date'>
-                    <FontAwesomeIcon icon={faCalendarAlt} />
-                    <span style={{ marginLeft: 10 }}>Date</span>
-                  </Select.Option>
-                  <Select.Option key='time' value='time'>
-                    <FontAwesomeIcon icon={faClock} />
-                    <span style={{ marginLeft: 10 }}>Time</span>
-                  </Select.Option>
-                  <Select.Option key='confirm' value='confirm'>
-                    <FontAwesomeIcon icon={faCheck} />
-                    <span style={{ marginLeft: 10 }}>Confirm</span>
                   </Select.Option>
                   <Select.Option key='smartwatch_data' value='smartwatch_data'>
                     <FontAwesomeIcon icon={faUserClock} />
