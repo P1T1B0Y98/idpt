@@ -9,7 +9,9 @@ function label (name) {
 
 const fields = {
   id: new IdField('id', label('id')),
+  title: new StringField('title', label('title')),
   item: new StringField('item', label('item')),
+  subject: new StringField('subject', label('subject')),
   createdAt: new DateTimeField('createdAt', label('createdAt'))
 }
 

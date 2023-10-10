@@ -1,9 +1,9 @@
 import { Button, Col, Form, Row } from 'antd';
 import { Formik } from 'formik';
 import { i18n } from 'i18n';
-import actions from 'modules/questionnaires/list/questionnairesListActions';
-import selectors from 'modules/questionnaires/list/questionnairesListSelectors';
-import model from 'modules/questionnaires/questionnairesModel';
+import actions from 'modules/questionnaireResponse/list/questionnaireResponseListActions';
+import selectors from 'modules/questionnaireResponse/list/questionnaireResponseListSelectors';
+import model from 'modules/questionnaireResponse/questionnaireResponseModel';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -12,6 +12,7 @@ import FilterWrapper, {
 } from 'view/shared/styles/FilterWrapper';
 import FormFilterSchema from 'view/shared/form/formFilterSchema';
 import InputFormItem from 'view/shared/form/items/InputFormItem';
+import FilterTitle from '../../shared/styles/FilterTitle';
 
 const { fields } = model;
 
@@ -19,7 +20,7 @@ const schema = new FormFilterSchema([
   fields.title,
 ]);
 
-class QuestionnairesListFilter extends Component {
+class QuestionnaireResponseListFilter extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(actions.doFetch(this.initialFilter()));
@@ -58,10 +59,26 @@ class QuestionnairesListFilter extends Component {
               <Form onSubmit={form.handleSubmit}>
                 <Row gutter={24}>
                   <Col md={24} lg={12}>
+                    <FilterTitle> Filter </FilterTitle>
+                  </Col>
+                </Row>
+                <Row gutter={24}>
+                  <Col md={24} lg={12}>
                     <InputFormItem
                       name={fields.title.name}
-                      label={fields.title.label}
+                      label="Title"
                       layout={formItemLayout}
+                      placeholder="Questionnaire/Assignment Title"
+                    />
+                  </Col>
+                </Row>
+                <Row gutter={24}>
+                  <Col md={24} lg={12}>
+                    <InputFormItem
+                      name={fields.subject.name}
+                      label="Patient Name"
+                      layout={formItemLayout}
+                      placeholder="Patient Name"
                     />
                   </Col>
                 </Row>
@@ -100,5 +117,5 @@ function select(state) {
 }
 
 export default withRouter(
-  connect(select)(QuestionnairesListFilter),
+  connect(select)(QuestionnaireResponseListFilter),
 );

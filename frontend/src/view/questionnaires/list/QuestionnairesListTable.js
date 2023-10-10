@@ -9,7 +9,6 @@ import TableWrapper from 'view/shared/styles/TableWrapper';
 import actions from 'modules/questionnaires/list/questionnairesListActions';
 import selectors from 'modules/questionnaires/list/questionnairesListSelectors';
 import questionnairesSelectors from 'modules/questionnaires/questionnairesSelectors';
-import destroyActions from 'modules/questionnaires/destroy/questionnairesDestroyActions';
 import destroySelectors from 'modules/questionnaires/destroy/questionnairesDestroySelectors';
 
 const { fields } = model;
@@ -22,17 +21,10 @@ class QuestionnairesListTable extends Component {
     fields.title.forTable(),
     {
       title: 'Created by',
-      dataIndex: 'createdBy',
-      render: (_, record) => 
-        record && record.createdBy 
-        ? (
-          <div>
-            <Link to={`/iam/${record.publisher.id}`}>
-              {typeof record.publisher.fullName !== 'undefined' ? record.publisher.fullName : '-'}
-            </Link>
-          </div>
-        )
-        : null
+      dataIndex: 'publisher',
+      render: (_, record) => (<div>  <Link to={`/iam/${record.publisher.id}`}>
+          {typeof record.publisher.fullName !== 'undefined' ? record.publisher.fullName : '-'}
+        </Link></div>)
     },
     {
       title: '',

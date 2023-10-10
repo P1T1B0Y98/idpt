@@ -95,7 +95,7 @@ module.exports = class AssignmentService {
     return this.repository.findById(id);
   }
 
-  /**
+  /*
    * Finds Assignments for Autocomplete.
    *
    * @param {*} search

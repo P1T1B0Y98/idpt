@@ -40,20 +40,16 @@ class QuestionnaireResponseListTable extends Component {
       title: 'Questionnaire',
       dataIndex: 'questionnaire',
       render: (_, record) => {
-        const questionnaireID = _get(record, 'questionnaire[0]')
-        console.log(questionnaireID)
+        const questionnaireID = _get(record, 'questionnaire')
         return questionnaireID ? (<div><Link to={`/questionnaires/${questionnaireID.id}/edit`}>{questionnaireID.title}</Link></div>) : null;
        }
     },
     {
       title: 'Subject',
       dataIndex: 'subject',
-      render: (record) => {
-        if (record) {
-          return <Link to={`/iam/${record.id}`}>{record.fullName}</Link>;
-        }
-        return null; // or any other fallback content
-      }
+      render: (_, record) => (<div>  <Link to={`/iam/${record.subject.id}`}>
+          {typeof record.subject.fullName !== 'undefined' ? record.subject.fullName : '-'}
+        </Link></div>)
     },
     fields.createdAt.forTable(),
     fields.item.forTable({

@@ -6,7 +6,7 @@ class ResponseSelection extends Component {
     const { selectedResponse, onChange } = this.props;
 
     return (
-      <Radio.Group onChange={onChange} value={selectedResponse}>
+      <Radio.Group style={{ paddingBottom: '16px' }}  onChange={onChange} value={selectedResponse}>
         <Radio value="both">All</Radio>
         <Radio value="assignment">Assignments</Radio>
         <Radio value="questionnaire">Questionnaires</Radio>

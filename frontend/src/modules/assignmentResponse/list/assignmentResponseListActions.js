@@ -1,7 +1,6 @@
 import Errors from 'modules/shared/error/errors'
 import selectors from 'modules/assignmentResponse/list/assignmentResponseListSelectors'
 import AssignmentResponseService from 'modules/assignmentResponse/assignmentResponseService'
-import QuestionnaireResponseService from 'modules/questionnaireResponse/questionnaireResponseService'
 
 const prefix = 'ASSIGNMENTS_RESPONSE_LIST'
 

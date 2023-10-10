@@ -33,7 +33,6 @@ const RenderOptions = ({
           },
         ];
         setClickedIndex(-1);
-        console.log(newOptions)
         onChange(newOptions);
       }}
     >

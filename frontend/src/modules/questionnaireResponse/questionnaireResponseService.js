@@ -112,10 +112,12 @@ export default class QuestionnaireReponseService {
     const response = await graphqlClient.query({
       query: gql`
         query QUESTIONNAIRES_RESPONSE_LIST(
+          $filter: QuestionnaireResponseFilterInput
           $limit: Int
           $offset: Int
         ) {
           questionnaireResponseList(
+            filter: $filter
             limit: $limit
             offset: $offset
           ) {
@@ -137,7 +139,7 @@ export default class QuestionnaireReponseService {
           }
         }
       `,
-      variables: { limit, offset }
+      variables: { filter, limit, offset }
     })
     return response.data.questionnaireResponseList
   }

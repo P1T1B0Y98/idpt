@@ -8,7 +8,7 @@ const graphqlSelectRequestedAttributes = require(
 )
 
 const schema = `
-  questionnaireResponseList(limit: Int, offset: Int, orderBy: QuestionnairesOrderByEnum): questionnaireResponsePage!
+  questionnaireResponseList(filter: QuestionnaireResponseFilterInput,limit: Int, offset: Int, orderBy: QuestionnairesOrderByEnum): questionnaireResponsePage!
 `
 
 const resolver = {

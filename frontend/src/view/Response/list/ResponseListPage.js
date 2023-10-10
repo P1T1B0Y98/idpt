@@ -7,6 +7,8 @@ import ContentWrapper from 'view/layout/styles/ContentWrapper'
 import AssignmentResponseListTable from 'view/Response/list/AssignmentResponseListTable'
 import QuestionnaireResponseListTable from 'view/Response/list/QuestionnaireResponseListTable'
 import ResponseSelection from 'view/Response/ResponseSelection'
+import ResponseListFilter from './ResponseListFilter'
+import QuestionnaireResponseToolbar from './ResponseListToolbar'
 class ResponseListPage extends Component {
   state = {
     selectedResponse: 'both', // Default selection
@@ -33,10 +35,12 @@ class ResponseListPage extends Component {
           <PageTitle>
             {i18n('entities.assignmentResponse.list.title')}
           </PageTitle>
+          <QuestionnaireResponseToolbar />
           <ResponseSelection 
             selectedResponse={selectedResponse}
             onChange={this.handleResponseChange} 
           />
+          <ResponseListFilter />
           {selectedResponse === 'assignment' && (
             <React.Fragment>
               <PageSubTitle>

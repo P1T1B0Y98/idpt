@@ -89,7 +89,7 @@ const emptyField = [
 ];
 
 const checkType = (value) => {
-  return value === 'stress' || value === 'sleep' || value === 'physical_health';
+  return value === 'anxiety' || value === 'depression' || value === 'physical_health' || value === 'general_health';
 };
 
 const checkFrequency = (value) => {
@@ -151,7 +151,6 @@ const SchemaList = React.forwardRef(
               onSortEnd={({ oldIndex, newIndex }) => {
                 // Re-assigned avoid mutation.
                 let updatedSchema = value;
-                console.log(value)
                 updatedSchema = arrayMove(
                   updatedSchema,
                   oldIndex,
@@ -162,7 +161,6 @@ const SchemaList = React.forwardRef(
                     `${index + 1}`,
                   );
                 });
-                console.log("UpdatedSchema", updatedSchema)
                 handleChange(updatedSchema);
               }}
             />
@@ -307,9 +305,10 @@ const FormBuilder = (props) => {
             ],
           })(
             <Radio.Group>
-              <Radio value="stress">Stress</Radio>
-              <Radio value="sleep">Sleep</Radio>
+              <Radio value="anxiety">Anxiety</Radio>
+              <Radio value="depression">Depression</Radio>
               <Radio value="physical_health">Physical Health</Radio>
+              <Radio value="general_health">General Health</Radio>
             </Radio.Group>,
           )}
         </Form.Item>

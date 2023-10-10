@@ -21,7 +21,7 @@ class QuestionnaireRepository {
 
     const currentUser = MongooseRepository.getCurrentUser(options)
     const [ record ] = await Questionnaire.create(
-      [ { ...data, createdBy: currentUser.id, updatedBy: currentUser.id } ],
+      [ { ...data, publisher: currentUser.id } ],
       MongooseRepository.getSessionOptionsIfExists(options)
     )
 
@@ -121,7 +121,6 @@ class QuestionnaireRepository {
     options
   ) {
     let criteria = {}
-
     if (filter) {
       if (filter.id) {
         criteria = { ...criteria, _id: MongooseQueryUtils.uuid(filter.id) }
@@ -154,6 +153,16 @@ class QuestionnaireRepository {
           }
         }
       }
+
+      if (filter.title) {
+        criteria = {
+          ...criteria,
+          title: {
+            $regex: MongooseQueryUtils.escapeRegExp(filter.title),
+            $options: 'i', // Case-insensitive search
+          },
+        };
+      }
     }
 
     const sort = MongooseQueryUtils.sort(orderBy || 'createdAt_DESC')
@@ -166,7 +175,7 @@ class QuestionnaireRepository {
       .skip(skip)
       .limit(limitEscaped)
       .sort(sort)
-      .populate('createdBy')
+      .populate('publisher')
 
     const count = await Questionnaire.countDocuments(criteria)
 

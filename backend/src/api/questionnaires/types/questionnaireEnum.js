@@ -12,9 +12,10 @@ const schema = `
   }
 
   enum QuestionnaireTypeEnum {
-    stress
-    sleep
+    anxiety
+    depression
     physical_health
+    general_health
   }
 
   enum FrequencyEnum {

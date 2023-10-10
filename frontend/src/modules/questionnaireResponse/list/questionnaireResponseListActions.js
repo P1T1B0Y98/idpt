@@ -1,6 +1,9 @@
 import Errors from 'modules/shared/error/errors'
 import selectors from 'modules/questionnaireResponse/list/questionnaireResponseListSelectors'
 import QuestionnaireResponseService from 'modules/questionnaireResponse/questionnaireResponseService'
+import exporterFields from 'modules/questionnaireResponse/list/questionnaireResponseListExporterFields'
+import Exporter from 'modules/shared/exporter/exporter';
+import { i18n } from 'i18n';
 
 const prefix = 'QUESTIONNAIRES_RESPONSE_LIST'
 
@@ -22,6 +25,41 @@ const actions = {
     dispatch({ type: actions.RESETED })
 
     dispatch(actions.doFetch())
+  },
+
+  doExport: () => async (dispatch, getState) => {
+    try {
+      if (!exporterFields || !exporterFields.length) {
+        throw new Error('exporterFields is required');
+      }
+
+      dispatch({
+        type: actions.EXPORT_STARTED,
+      });
+
+      const filter = selectors.selectFilter(getState());
+      const response = await QuestionnaireResponseService.list(
+        filter,
+        selectors.selectOrderBy(getState()),
+        null,
+        null,
+      );
+
+      new Exporter(
+        exporterFields,
+        i18n('entities.questionnaire_responses.exporterFileName'),
+      ).transformAndExportAsExcelFile(response.rows);
+
+      dispatch({
+        type: actions.EXPORT_SUCCESS,
+      });
+    } catch (error) {
+      Errors.handle(error);
+
+      dispatch({
+        type: actions.EXPORT_ERROR,
+      });
+    }
   },
   doChangePaginationAndSort: (pagination, sorter) =>
     async (dispatch, getState) => {

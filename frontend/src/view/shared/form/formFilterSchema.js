@@ -22,7 +22,7 @@ export default class FormFilterSchema {
     } else {
       rawValues = filter || {};
     }
-
+    
     const initialValues = {};
 
     this.fields.forEach((field) => {

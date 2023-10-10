@@ -17,17 +17,14 @@ const QuestionnaireSchema = new Schema(
     type: {
       type: String,
       required: true,
-      enum: ['stress', 'sleep', 'physical_health'],
-      default: 'stress',
+      enum: ['anxiety', 'depression', 'physical_health', 'general_health'],
+      default: 'anxiety',
     },
     subjectType: {
       type: String,
       default: 'Patients'
     },
-    publisher: {
-        type: Schema.Types.ObjectId, 
-        ref: 'user' 
-    },
+    publisher: { type: Schema.Types.ObjectId, ref: 'user' },
   
     item: [
       {

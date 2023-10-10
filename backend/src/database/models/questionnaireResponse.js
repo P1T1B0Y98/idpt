@@ -9,7 +9,7 @@ const Schema = database.Schema
 const QuestionnaireResponseSchema = new Schema(
   {
     resourceType: { type: String },
-    questionnaire: [ { type: Schema.Types.ObjectId, ref: 'questionnaire' } ],
+    questionnaire: { type: Schema.Types.ObjectId, ref: 'questionnaire' },
     status: { type: String },
     subject: { type: Schema.Types.ObjectId, ref: 'user' },
     authored: { type: String },

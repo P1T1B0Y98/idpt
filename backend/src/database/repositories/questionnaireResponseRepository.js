@@ -2,6 +2,8 @@ const MongooseRepository = require('./mongooseRepository')
 const MongooseQueryUtils = require('../utils/mongooseQueryUtils')
 const AuditLogRepository = require('./auditLogRepository')
 const questionnaireResponse = require('../models/questionnaireResponse')
+const questionnaire = require('../models/questionnaire')
+const user = require('../models/user')
 
 /**
  * Handles database operations for the questionnaireResponse.
@@ -160,7 +162,36 @@ class questionnaireResponseRepository {
           }
         }
       }
-    }
+
+      // Add filter by title
+      if (filter.title) {
+
+        const questionnaires = await questionnaire.findOne({ title: filter.title });
+
+        if (!questionnaires) {
+          return { rows: [], count: 0 };
+        }
+
+        criteria = {
+          ...criteria,
+          questionnaire: MongooseQueryUtils.uuid(questionnaires._id),
+        };
+      }
+
+      if (filter.subject) {
+
+        const subjects = await user.findOne({ fullName: filter.subject });
+
+        if (!subjects) {
+          return { rows: [], count: 0 };
+        }
+        
+        criteria = {
+          ...criteria,
+          subject: MongooseQueryUtils.uuid(subjects._id),
+        };
+      }
+  }
 
     const sort = MongooseQueryUtils.sort(orderBy || 'createdAt_DESC')
 
@@ -214,6 +245,7 @@ class questionnaireResponseRepository {
     return records.map(record => ({ id: record.id, label: record['title'] }))
   }
 
+  
   /**
    * Creates an audit log of the operation.
    *
