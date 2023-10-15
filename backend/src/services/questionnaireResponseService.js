@@ -9,7 +9,7 @@ const QuestionnaireResponseRepository = require(
   const { encrypt } = require('../security/cryptoHelper')
   
   /**
-   * Handles Questionnaire operations
+   * Handles QuestionnaireResponse operations
    */
   module.exports = class QuestionnaireResponseService {
     constructor ({ currentUser, language }) {
@@ -19,13 +19,13 @@ const QuestionnaireResponseRepository = require(
     }
   
     /**
-     * Creates a Questionnaire.
+     * Creates a QuestionnaireResponse.
      *
      * @param {*} data
      */
     async create (data) {
       const session = await MongooseRepository.createSession()
-  
+            
       try {
         const record = await this.repository.create(data, {
           session: session,

@@ -70,7 +70,7 @@ module.exports = class QuestionnaireService {
    */
   async destroyAll(ids) {
     const session = await MongooseRepository.createSession();
-
+    console.log("Hello");
     try {
       for (const id of ids) {
         await this.repository.destroy(id, {

@@ -45,7 +45,7 @@ class QuestionnaireRepository {
     await MongooseRepository.wrapWithSessionIfExists(
       Questionnaire.updateOne({ _id: id }, {
         ...data,
-        updatedBy: MongooseRepository.getCurrentUser(options).id
+        date: MongooseRepository.getCurrentUser(options).id
       }),
       options
     )

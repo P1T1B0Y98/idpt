@@ -13,6 +13,7 @@ const schema = `
     owner: [ Module! ]
     taxonomies: [ Taxonomy! ]
     assignments: [Assignment]
+    questionnaires: [Questionnaire]
     elements: [Element]
     documents: [Document]
     audios: [Audio]

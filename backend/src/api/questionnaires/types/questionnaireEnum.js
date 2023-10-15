@@ -8,7 +8,7 @@ const schema = `
     date
     time
     confirm
-    smartwatch_data
+    wearable
   }
 
   enum QuestionnaireTypeEnum {

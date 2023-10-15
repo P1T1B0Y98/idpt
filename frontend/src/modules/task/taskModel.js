@@ -72,6 +72,11 @@ const fields = {
     label('assignments'),
     {},
   ),
+  questionnaires: new RelationToManyField(
+    'questionnaires',
+    label('questionnaires'),
+    {},
+  ),
   taxonomies: new RelationToManyField(
     'taxonomies',
     label('taxonomies'),

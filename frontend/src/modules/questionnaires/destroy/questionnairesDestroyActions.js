@@ -17,6 +17,7 @@ const actions = {
   DESTROY_ALL_ERROR: `${prefix}_DESTROY_ALL_ERROR`,
 
   doDestroy: (id) => async (dispatch) => {
+    console.log("YESSIR")
     try {
       dispatch({
         type: actions.DESTROY_STARTED,

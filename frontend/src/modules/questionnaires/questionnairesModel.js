@@ -12,10 +12,12 @@ const fields = {
   title: new StringField('title', label('title'), {
     required: true,
   }),
-
-  createdAt: new DateTimeField(
-    'createdAt',
-    label('createdAt'),
+  description: new StringField('description', label('description'), {
+    required: true,
+  }),
+  date: new DateTimeField(
+    'date',
+    label('date'),
   ),
   updatedAt: new DateTimeField(
     'updatedAt',

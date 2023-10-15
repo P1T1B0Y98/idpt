@@ -103,6 +103,12 @@ const TaskSchema = new Schema(
         ref: 'assignment',
       },
     ],
+    questionnaires: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'questionnaire',
+      },
+    ],
     createdBy: {
       type: Schema.Types.ObjectId,
       ref: 'user',

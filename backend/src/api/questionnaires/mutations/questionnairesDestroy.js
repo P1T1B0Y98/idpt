@@ -9,6 +9,7 @@ const schema = `
 
 const resolver = {
   questionnairesDestroy: async (root, args, context) => {
+    
     new PermissionChecker(context).validateHas(
       permissions.casedDestroy,
     );

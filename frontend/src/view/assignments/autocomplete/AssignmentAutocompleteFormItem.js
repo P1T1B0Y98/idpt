@@ -23,7 +23,6 @@ class AssignmentAutocompleteFormItem extends Component {
 
   doCreateSuccess = (record) => {
     const { form, name, mode } = this.props;
-
     if (mode && mode === 'multiple') {
       form.setFieldValue(name, [
         ...(form.values[name] || []),

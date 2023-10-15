@@ -1,6 +1,7 @@
 const schema = `
   input QuestionnaireInput {
     title: String!
+    description: String!
     type: QuestionnaireTypeEnum!
     item: [QuestionnaireSchemaInput]
     repeats: FrequencyEnum!  

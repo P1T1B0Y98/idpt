@@ -334,6 +334,7 @@ const no = {
         updatedAt: 'Oppdatert',
         createdAtRange: 'Opprettet',
         assignments: 'Add assignment',
+        questionnaire: 'Add questionnaire'
       },
       enumerators: {
         status: {

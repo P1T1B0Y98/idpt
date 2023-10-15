@@ -23,7 +23,7 @@ class QuestionnaireAutocompleteFormItem extends Component {
 
   doCreateSuccess = (record) => {
     const { form, name, mode } = this.props;
-
+    console.log("HEIHEI");
     if (mode && mode === 'multiple') {
       form.setFieldValue(name, [
         ...(form.values[name] || []),

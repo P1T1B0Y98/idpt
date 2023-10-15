@@ -76,7 +76,7 @@ export default class QuestionnaireReponseService {
           questionnairesFind(id: $id) {
             id
             title
-            sub_title
+            description
             type
             formSchema {
               type
@@ -97,7 +97,7 @@ export default class QuestionnaireReponseService {
                 message
               }
             }
-            createdAt
+            authored
             updatedAt
           }
         }
@@ -133,7 +133,7 @@ export default class QuestionnaireReponseService {
                 id
                 fullName
               }
-              createdAt
+              authored
               meta
             }
           }

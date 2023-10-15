@@ -21,7 +21,7 @@ const QuestionnaireResponseSchema = new Schema(
     },
     importHash: { type: String }
   },
-  { timestamps: true }
+  { timestamps: false }
 )
 
 QuestionnaireResponseSchema.virtual('id').get(function () {

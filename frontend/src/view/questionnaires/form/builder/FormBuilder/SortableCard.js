@@ -146,7 +146,7 @@ const SortableCard = SortableElement((
                           selected === 'checkbox' ||
                             selected === 'radio' ||
                             selected === 'select' ||
-                            selected === 'smartwatch_data'
+                            selected === 'wearable'
                         ) {
                         newField.answerOption = []
                       }
@@ -170,9 +170,9 @@ const SortableCard = SortableElement((
                     <FontAwesomeIcon icon={faCheckSquare} />
                     <span style={{ marginLeft: 10 }}>Checkboxes</span>
                   </Select.Option>
-                  <Select.Option key='smartwatch_data' value='smartwatch_data'>
+                  <Select.Option key='wearable' value='wearable'>
                     <FontAwesomeIcon icon={faUserClock} />
-                    <span style={{ marginLeft: 10 }}>Smartwatch Data</span>
+                    <span style={{ marginLeft: 10 }}>Wearable Data</span>
                   </Select.Option>
                 </Select>
               </Form.Item>

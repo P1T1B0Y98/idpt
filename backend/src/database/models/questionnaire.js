@@ -14,6 +14,7 @@ const QuestionnaireSchema = new Schema(
       type: String,
       default: 'active'},
     title: { type: String },
+    description: { type: String },
     type: {
       type: String,
       required: true,
@@ -41,7 +42,7 @@ const QuestionnaireSchema = new Schema(
             'date',
             'time',
             'confirm',
-            'smartwatch_data',
+            'wearable',
           ],
           default: 'input',
         },
@@ -67,7 +68,9 @@ const QuestionnaireSchema = new Schema(
     },
     importHash: { type: String },
   },
-  { timestamps: { updatedAt: 'date' },
+  { timestamps: { 
+    createdAt: false,
+    updatedAt: 'date' },
 },
 );
 

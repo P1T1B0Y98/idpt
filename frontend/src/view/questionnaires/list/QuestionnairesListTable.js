@@ -9,12 +9,27 @@ import TableWrapper from 'view/shared/styles/TableWrapper';
 import actions from 'modules/questionnaires/list/questionnairesListActions';
 import selectors from 'modules/questionnaires/list/questionnairesListSelectors';
 import questionnairesSelectors from 'modules/questionnaires/questionnairesSelectors';
+import destroyActions from 'modules/questionnaires/destroy/questionnairesDestroyActions';
 import destroySelectors from 'modules/questionnaires/destroy/questionnairesDestroySelectors';
 
 const { fields } = model;
 
+
 class QuestionnairesListTable extends Component {
   // ...Other methods here...
+
+  handleTableChange = (pagination, filters, sorter) => {
+    const { dispatch } = this.props;
+
+    dispatch(
+      actions.doChangePaginationAndSort(pagination, sorter),
+    );
+  };
+  
+  doDestroy = (id) => {
+    const { dispatch } = this.props;
+    dispatch(destroyActions.doDestroy(id));
+  };
 
   columns = [
     fields.id.forTable(),

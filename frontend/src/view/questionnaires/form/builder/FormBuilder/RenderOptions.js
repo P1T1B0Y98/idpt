@@ -94,7 +94,7 @@ const RenderOptions = ({
     />
   );
 
-  if (type === 'smartwatch_data') {
+  if (type === 'wearable') {
     return <RenderSmartwatchDataOptions value={answerOption} onChange={handleSmartwatchDataChange} />
   }
 

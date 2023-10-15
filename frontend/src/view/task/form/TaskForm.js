@@ -26,6 +26,7 @@ import SelectFormItem from 'view/shared/form/items/SelectFormItem';
 import TaskAutocompleteFormItem from 'view/task/autocomplete/TaskAutocompleteFormItem';
 import ModuleAutocompleteFormItem from 'view/module/autocomplete/ModuleAutocompleteFormItem';
 import AssignmentAutocompleteFormItem from 'view/assignments/autocomplete/AssignmentAutocompleteFormItem';
+import QuestionnaireAutocompleteFormItem from 'view/questionnaires/autocomplete/QuestionnaireAutocompleteFormItem';
 import TaxonomyAutocompleteFormItem from 'view/taxonomy/autocomplete/TaxonomyAutocompleteFormItem';
 
 import _get from 'lodash/get';
@@ -48,6 +49,7 @@ class TaskForm extends Component {
     fields.videos,
     fields.audios,
     fields.assignments,
+    fields.questionnaires
   ]);
 
   handleSubmit = (values) => {
@@ -148,6 +150,14 @@ class TaskForm extends Component {
                       name={fields.assignments.name}
                       label={fields.assignments.label}
                       required={fields.assignments.required}
+                      showCreate={false}
+                      form={form}
+                      mode="multiple"
+                    />
+                    <QuestionnaireAutocompleteFormItem
+                      name={fields.questionnaires.name}
+                      label={fields.questionnaires.label}
+                      required={fields.questionnaires.required}
                       showCreate={false}
                       form={form}
                       mode="multiple"

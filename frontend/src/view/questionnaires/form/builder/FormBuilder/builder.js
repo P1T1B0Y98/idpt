@@ -114,7 +114,7 @@ const checkOptions = (items) => {
       currQuestion.type === 'radio' ||
       currQuestion.type === 'checkbox' ||
       currQuestion.type === 'select' ||
-      currQuestion.type === 'smartwatch_data'
+      currQuestion.type === 'wearable'
     ) {
       const currOptions = currQuestion.answerOption;
       if (currOptions.length <= 0) {
@@ -285,10 +285,29 @@ const FormBuilder = (props) => {
         id={formId}
         ref={formRef}
       >
-        <Form.Item label="Title">
+        <Form.Item required label="Title">
           {getFieldDecorator('title', {
             initialValue: record ? record.title : '',
-          })(<Input placeholder="Add form title" />)}
+            rules: [
+              {
+                required: true, // Add this rule to check if the field is required.
+                message: 'Please provide a questionnaire title.',
+                whitespace: true, // This ensures that whitespace is not considered valid.
+              },
+            ],        
+          })(<Input placeholder="Add questionnaire title" />)}
+        </Form.Item>
+        <Form.Item required label="Description">
+          {getFieldDecorator('description', {
+            initialValue: record ? record.description : '',
+            rules: [
+              {
+                required: true, 
+                message: 'Please provide a questionnaire description.',
+                whitespace: true, 
+              },
+            ], 
+          })(<Input placeholder="Add a description here" />)}
         </Form.Item>
         <Form.Item required label="Questionnaire Type">
           {getFieldDecorator('type', {

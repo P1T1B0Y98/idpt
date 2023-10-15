@@ -32,7 +32,7 @@ const en = {
       menu: 'Questionnaires',
       list: {
         menu: 'Questionnaires',
-        title: 'questionnaire',
+        title: 'Questionnaire',
       },
       create: {
         success: 'questionnaire created successfully',
@@ -374,6 +374,7 @@ const en = {
         updatedAt: 'Updated at',
         createdAtRange: 'Created at',
         assignments: 'Add assignment',
+        questionnaires: 'Add questionnaire'
       },
       enumerators: {
         status: {

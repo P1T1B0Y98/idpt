@@ -3,7 +3,7 @@ const schema = `
    id: String!
    questionnaire: Questionnaire!
    item: JSON
-   createdAt: DateTime
+   authored: String
    subject: User
    meta: JSON
  }
