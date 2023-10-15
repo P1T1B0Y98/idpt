@@ -21,6 +21,7 @@ export default class QuestionnairesService {
   }
 
   static async destroyAll (ids) {
+    console.log("hei");
     const response = await graphqlClient.mutate({
       mutation: gql`
         mutation QUESTIONNAIRES_DESTROY($ids: [String!]!) {
@@ -173,7 +174,6 @@ export default class QuestionnairesService {
       `,
       variables: { query, limit }
     })
-
     return response.data.questionnairesAutocomplete
   }
 }
